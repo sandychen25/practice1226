@@ -1,0 +1,53 @@
+---
+title: "2018-12-26"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plasticContainer <- list(
+  greenBox=c("paper","scissor"),     # location 1
+  redBox=c(1L,3L,2.5),               # location 2
+  blueBox=c(TRUE,FALSE,TRUE,TRUE)    # location 3
+)
+```
+
+```{r}
+plasticContainer[c("greenBox")]$greenBox[1]# or plasticContainer[c(1,2)]
+plasticContainer[c("greenBox")][["greenBox"]][1]
+```
+
+```{r}
+plasticContainer[["greenBox"]][1] # or plasticContainer[[1]]
+```
+
+```{r}
+plasticContainer$greenBox[1]
+```
+
+```{r}
+install.packages("plotly")
+library(plotly)
+```
+
+
+```{r}
+download.file("https://github.com/tpemartin/github-data/blob/master/plotly_4070_neda.Rda?raw=true",destfile = "plotly_4070_neda.Rda")
+load("plotly_4070_neda.Rda")
+library(plotly)
+plotly_4070_neda
+```
+
+```{r}
+library(readr)
+library(tidyr)
+libraryData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/libraryData2.csv")
+libraryData %>%
+  group_by(學院) %>%
+  nest(.key="各院借閱資料") ->
+  libraryDataNested
+```
+
